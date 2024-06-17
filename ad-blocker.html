@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Blocker</title>
+    <style>
+        /* Your CSS styles here */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        nav {
+            background-color: #333;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 1em;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 1em;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+
+        main {
+            padding: 2em;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        section {
+            background-color: white;
+            padding: 2em;
+            margin: 1em 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #4CAF50;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin: 1em 0;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .btn {
+            height: 57px;
+            width: 223px;
+            margin-top: 30px;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn .bg-layer {
+            height: 100%;
+            width: 300%;
+            position: absolute;
+            left: -100%;
+            background: -webkit-linear-gradient(135deg, #9b27ca, #d33639, #9b27ca, #d33639);
+            transition: all 0.4s ease;
+        }
+
+        .btn:hover .bg-layer {
+            left: 0;
+        }
+
+        .content button {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            width: 100%;
+            background: none;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Custom styles for advertisement section */
+        .ad {
+            text-align: center;
+        }
+
+        .ad img {
+            max-width: 200px; /* Adjust the size as needed */
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Ad Blocker</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="index.html">Back</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="adBlocker">
+        <h2>Ad Blocker</h2>
+        <p>Enable ad blocker to prevent malicious ads and pop-ups.</p>
+        <label class="switch">
+            <input type="checkbox" id="adBlockerToggle" onchange="toggleAdBlocker()">
+            <span class="slider round"></span>
+        </label>
+        <p id="adBlockerStatus">Ad Blocker is currently <span id="adBlockerStatusLabel">enabled</span>.</p>
+    </section>
+    <section id="advertisement" class="ad">
+        <h2>Advertisement</h2>
+        <a href="https://example.com">
+            <img src="https://st.depositphotos.com/2625053/4832/v/450/depositphotos_48320523-stock-illustration-your-ad-here-stamp.jpg" alt="Ad Image">
+        </a>
+    </section>
+</main>
+
+<script>
+    function toggleAdBlocker() {
+        const adElements = document.querySelectorAll('.ad');
+        const adBlockerToggle = document.getElementById('adBlockerToggle');
+        const adBlockerStatus = document.getElementById('adBlockerStatusLabel');
+        if (adBlockerToggle.checked) {
+            adElements.forEach(ad => {
+                ad.style.display = 'none';
+            });
+            adBlockerStatus.textContent = 'enabled';
+        } else {
+            adElements.forEach(ad => {
+                ad.style.display = 'block';
+            });
+            adBlockerStatus.textContent = 'disabled';
+        }
+    }
+</script>
+
+</body>
+</html>

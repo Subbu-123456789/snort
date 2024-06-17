@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNORT</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        nav {
+            background-color: #333;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 1em;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 1em;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+
+        main {
+            padding: 2em;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        section {
+            background-color: white;
+            padding: 2em;
+            margin: 1em 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #4CAF50;
+        }
+
+        .btn {
+            height: 57px;
+            width: 223px;
+            margin-top: 30px;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn .bg-layer {
+            height: 100%;
+            width: 300%;
+            position: absolute;
+            left: -100%;
+            background: -webkit-linear-gradient(135deg, #9b27ca, #d33639, #9b27ca, #d33639);
+            transition: all 0.4s ease;
+        }
+
+        .btn:hover .bg-layer {
+            left: 0;
+        }
+
+        .content button {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            width: 100%;
+            background: none;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .filter {
+            margin-bottom: 1em;
+        }
+
+        .filter select {
+            padding: 0.5em;
+            margin-right: 0.5em;
+        }
+
+        .search {
+            margin-bottom: 1em;
+        }
+
+        .search input {
+            padding: 0.5em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .alert-summary {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1em;
+        }
+
+        .alert-summary div {
+            background-color: #f9f9f9;
+            padding: 1em;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin: 0 0.5em;
+            text-align: center;
+        }
+
+        .alert-summary div:first-child {
+            margin-left: 0;
+        }
+
+        .alert-summary div:last-child {
+            margin-right: 0;
+        }
+
+        .alert-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .alert-list li {
+            background-color: #f9f9f9;
+            padding: 1em;
+            margin-bottom: 1em;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert-list li h3 {
+            margin: 0 0 0.5em;
+        }
+
+        .alert-list li p {
+            margin: 0.5em 0 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SNORT</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="alerts.html">View Alerts</a></li>
+        <li><a href="saved-files.html">Saved Files</a></li>
+        <li><a href="ad-blocker.html">Ad Blocker</a></li>
+        <li><a href="contact.html">Contact Authorities</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="alerts">
+        <h2>Alerts</h2>
+        <div class="filter">
+            <label for="severity">Severity:</label>
+            <select id="severity">
+                <option value="all">All</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+            <label for="type">Type:</label>
+            <select id="type">
+                <option value="all">All</option>
+                <option value="intrusion">Intrusion</option>
+                <option value="malware">Malware</option>
+                <option value="phishing">Phishing</option>
+            </select>
+        </div>
+        <div class="search">
+            <input type="text" id="search" placeholder="Search alerts...">
+        </div>
+        <div class="alert-summary">
+            <div>
+                <h3>Total Alerts</h3>
+                <p id="total-alerts">0</p>
+            </div>
+            <div>
+                <h3>High Severity</h3>
+                <p id="high-severity-alerts">0</p>
+            </div>
+            <div>
+                <h3>Medium Severity</h3>
+                <p id="medium-severity-alerts">0</p>
+            </div>
+            <div>
+                <h3>Low Severity</h3>
+                <p id="low-severity-alerts">0</p>
+            </div>
+        </div>
+        <ul class="alert-list" id="alert-list">
+            <!-- Alert items will be populated here using JavaScript -->
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 SNORT. All rights reserved.</p>
+</footer>
+
+<script>
+    const alerts = [
+        { id: 1, severity: 'high', type: 'intrusion', message: 'Intrusion detected in sector 4', date: '2024-06-01' },
+        { id: 2, severity: 'medium', type: 'malware', message: 'Malware detected on device 7', date: '2024-06-02' },
+        { id: 3, severity: 'low', type: 'phishing', message: 'Phishing attempt on email server', date: '2024-06-03' },
+        // More alerts can be added here
+    ];
+
+    function renderAlerts(filterSeverity = 'all', filterType = 'all', searchQuery = '') {
+        const alertList = document.getElementById('alert-list');
+        alertList.innerHTML = '';
+
+        let filteredAlerts = alerts;
+
+        if (filterSeverity !== 'all') {
+            filteredAlerts = filteredAlerts.filter(alert => alert.severity === filterSeverity);
+        }
+
+        if (filterType !== 'all') {
+            filteredAlerts = filteredAlerts.filter(alert => alert.type === filterType);
+        }
+
+        if (searchQuery) {
+            filteredAlerts = filteredAlerts.filter(alert => alert.message.toLowerCase().includes(searchQuery.toLowerCase()));
+        }
+
+        filteredAlerts.forEach(alert => {
+            const li = document.createElement('li');
+            li.innerHTML = `<h3>${alert.message}</h3><p>Severity: ${alert.severity}</p><p>Type: ${alert.type}</p><p>Date: ${alert.date}</p>`;
+            alertList.appendChild(li);
+        });
+
+        document.getElementById('total-alerts').innerText = filteredAlerts.length;
+        document.getElementById('high-severity-alerts').innerText = filteredAlerts.filter(alert => alert.severity === 'high').length;
+        document.getElementById('medium-severity-alerts').innerText = filteredAlerts.filter(alert => alert.severity === 'medium').length;
+        document.getElementById('low-severity-alerts').innerText = filteredAlerts.filter(alert => alert.severity === 'low').length;
+    }
+
+    document.getElementById('severity').addEventListener('change', (e) => {
+        renderAlerts(e.target.value, document.getElementById('type').value, document.getElementById('search').value);
+    });
+
+    document.getElementById('type').addEventListener('change', (e) => {
+        renderAlerts(document.getElementById('severity').value, e.target.value, document.getElementById('search').value);
+    });
+
+    document.getElementById('search').addEventListener('input', (e) => {
+        renderAlerts(document.getElementById('severity').value, document.getElementById('type').value, e.target.value);
+    });
+
+    renderAlerts();
+</script>
+
+</body>
+</html>

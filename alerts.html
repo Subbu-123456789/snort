@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Alerts - SNORT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        nav {
+            background-color: #333;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 1em;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 1em;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+
+        main {
+            padding: 2em;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        section {
+            background-color: white;
+            padding: 2em;
+            margin: 1em 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #4CAF50;
+        }
+
+        /* Additional styles for alerts */
+        .alert {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 0.5em;
+            margin-bottom: 1em;
+        }
+
+        /* Styling for back button */
+        .back-btn {
+            display: inline-block;
+            padding: 0.5em 1em;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>View Alerts</h1>
+</header>
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="saved-files.html">Saved Files</a></li>
+        <li><a href="ad-blocker.html">Ad Blocker</a></li>
+        <li><a href="contact.html">Contact Authorities</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section>
+        <h2>Recent Alerts</h2>
+        <div class="alert">
+            <p>Alert 1: Suspicious activity detected.</p>
+        </div>
+        <div class="alert">
+            <p>Alert 2: Malware attempt blocked.</p>
+        </div>
+        <!-- Add more alerts as needed -->
+    </section>
+</main>
+
+</body>
+</html>
